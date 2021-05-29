@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, } from 'react-native';
+import { StyleSheet, Text, View, Image, Modal } from 'react-native';
 import { Card, CardItem, Body, Left, Right, Thumbnail, Button } from 'native-base';
 import Icon from 'react-native-vector-icons/Feather';
+import PagerView from 'react-native-pager-view';
 
 function Post ( props ) {
     const data  = props.data
@@ -22,10 +23,21 @@ function Post ( props ) {
             </CardItem>
 
             {/* 이미지 */}
-            <CardItem cardBody>
-                <Image 
-                    source={{ uri: data.pic }} 
-                    style={{ height:300, width:null, flex: 1 }} />
+            <CardItem>
+            <PagerView style={styles.pagerView} initialPage={0}>
+      <View key="1">
+        <Text>First page</Text>
+      </View>
+      <View key="2">
+        <Text>Second page</Text>
+      </View>
+    </PagerView>
+                <PagerView style={styles.pagerView} initialPage={0}>
+                    {data.pic.map(img => 
+                    <Image
+                        source={{ uri: img }} 
+                        style={{ height:300, width:null, flex: 1 }} />)}
+                </PagerView>
             </CardItem>
 
             {/* 하트/댓글/메시지/북마크 */}
