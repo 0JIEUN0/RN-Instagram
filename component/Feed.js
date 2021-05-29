@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, SafeAreaView, ScrollView, StatusBar, Text } from 'react-native';
 import Post from './Post'
 
@@ -22,12 +22,38 @@ const DATA = [
 ]
 
 function Feed() {
+    const [posts, setPosts] = useState([]);
+
+    const fetchFeeds = () =>  {
+        const body = {
+            id: 1,
+            jsonrpc: "2.0",
+            method: "call",
+            params: [
+              "database_api",
+              "get_discussions_by_created",
+              [{ tag: "en", limit: 20 }]
+            ]
+        };
+        fetch('https://api.steemit.com', {
+            method: 'POST',
+            body: JSON.stringify(body)
+        })
+        .then(res => res.json())
+        .then(res => setPosts(res.result))
+    };
+
+    useEffect(() => {
+        fetchFeeds()
+        
+    }, []);
+
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={styles.scrollView}>
                 <View>
                     {
-                        DATA.map((post) => 
+                        posts.map((post) => 
                             <Post data = {post} />
                         )
                     }
