@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Feather';
+import Feed from '../Feed'
 
 const Stack = createStackNavigator();
 
@@ -24,12 +25,13 @@ function Home() {
     </Stack.Navigator>
   );
 }
+
 function HomeScreen( { navigation }) {
     return (
       <View style={{ 
-        flex: 1, alignItems: 'center', justifyContent: 'center' 
+        flex: 1, justifyContent: 'center' 
         }}>
-        <Text>Home Screen</Text>
+        <Feed />
       </View>
     );
 }
