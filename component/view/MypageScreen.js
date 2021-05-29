@@ -6,7 +6,7 @@ import MyPage from '../Mypage'
 const TEMP_USER = {
   userName: "je",
   userPic: "https://images.unsplash.com/photo-1612151855475-877969f4a6cc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aGQlMjBpbWFnZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80",
-  postNum: 1,
+  postNum: 4,
   follower: 10,
   following: 20,
 }
